@@ -1,0 +1,29 @@
+/*
+	generate gray code 
+	notion g[i]=b[i]^b[i+1];
+*/
+public class Solution {
+    public ArrayList<Integer> grayCode(int n) {
+        ArrayList<Integer> result=new ArrayList<Integer>();
+        int change=0;
+        int num_length=1;
+        for(int i=0;i<Math.pow(2,n);i++)
+        {
+            int x;
+            int y;
+            int temp=i;
+            change=0;
+            num_length=0;
+            while(temp!=0)
+            {
+                x=temp%2;
+                temp=temp>>1;
+                y=temp%2;
+                change+=(x^y)*Math.pow(2,num_length);
+                num_length++;
+            }
+            result.add(change);
+        }
+        return result;
+    }
+}
