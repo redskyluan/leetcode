@@ -1,0 +1,58 @@
+//how to calculate all the permute of a Array
+//Use recursive.ArrayList.add function
+//very interesting 
+class Solution {
+    public ArrayList<ArrayList<Integer>> permute(int[] num) {
+        ArrayList<ArrayList<Integer>> ret =new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> tmp =new ArrayList<ArrayList<Integer>>();
+        ArrayList<Integer> temp= new ArrayList<Integer> ();
+        if(num.length==0)
+        {
+            return ret;
+        }
+        if(num.length==1)
+        {
+            temp.add(num[0]);
+            ret.add(temp);
+            return ret;
+        }
+        else if(num.length==2)
+        {
+            temp.add(num[0]);
+            temp.add(num[1]);
+            ret.add(temp); 
+            temp= new ArrayList<Integer> ();
+            temp.add(num[1]);
+            temp.add(num[0]);
+            ret.add(temp);
+            return ret;
+        }
+        else
+        {
+            int [] recur= new int [num.length-1];
+            for (int i=0;i<num.length-1;i++)
+            {
+                recur[i]= num[i];
+            }
+            tmp =permute(recur);
+            while(!tmp.isEmpty())
+            {
+                temp=tmp.remove(0);
+                for(int i=0;i<num.length;i++)
+                {
+                    ArrayList<Integer> temp_add= new ArrayList<Integer> ();
+                    for(int j=0;j<temp.size();j++)
+                    {
+                        temp_add.add(temp.get(j)) ;
+                    }
+                    if(i!=(num.length-1))
+                        temp_add.add(i,num[(num.length-1)]);
+                    else
+                       temp_add.add(num[(num.length-1)]);
+                    ret.add(temp_add);
+                }
+            }
+            return ret;
+        }
+    }
+}
