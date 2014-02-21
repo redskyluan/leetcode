@@ -1,1 +1,24 @@
+public class Solution {
+    public void sortColors(int[] A) {
+        int num_0=0;
+        int num_1=0;
+        int num_2=0;
         for(int i=0;i<A.length;i++)
+        {
+             if(A[i]==0)
+                num_1++;
+             if(A[i]==1)
+                num_2++;
+        }
+        num_2+=num_1;
+        for(int i=0;i<A.length;i++)
+        {
+            if(i<num_1)
+                A[i]=0;
+            else if(i<num_2)
+                A[i]=1;
+            else
+                A[i]=2;
+        }
+    }
+}
